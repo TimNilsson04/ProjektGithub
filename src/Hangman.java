@@ -3,14 +3,16 @@ import javax.swing.*;
 public class Hangman {
     public static void main(String[] args) {
 
-        String word = (JOptionPane.showInputDialog("Write the word that is going to be guessed."));
+        String word = (JOptionPane.showInputDialog("Word?"));
 
 
         char[] hiddenLetters = createHiddenWord(word);
-          char[] showingLetters = createShowingWord(word);
+        char[] showingLetters = createShowingWord(word);
 
         System.out.println(createHiddenWord(word));
+        System.out.println(guessing(hiddenLetters, showingLetters));
     }
+
 
     private static char[] createHiddenWord(String word) {
 
@@ -26,6 +28,7 @@ public class Hangman {
 
         return letters;
     }
+
     private static char[] createShowingWord(String word) {
 
         int length = word.length();
@@ -39,13 +42,25 @@ public class Hangman {
     }
 
 
-    public static void guessing(char hiddenLetters, char showingLetters) {
-
+    public static char[] guessing(char[] hiddenLetters, char[] showingLetters) {
+        String showingword = new String(showingLetters);
+        String hiddenword = new String(hiddenLetters);
         String guess = (JOptionPane.showInputDialog("Write your guess."));
 
-        if (showingLetters == guess);
+        if (showingword.contains(guess)) {
 
-        hiddenLetters =
-}
+
+            for (int i = 0; i < showingword.length(); i++) {
+
+                if (showingword.charAt(i) == guess.charAt(0)) {
+
+                    hiddenLetters[i] = guess.charAt(0);
+
+                }
+
+            }
+        }
+        return hiddenLetters;
+    }
 }
 

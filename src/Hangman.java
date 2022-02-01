@@ -37,6 +37,8 @@ public class Hangman {
 
         for (int i = 0; i < length; i++) {
 
+            showingletters[i] = word.charAt(i);
+
         }
         return showingletters;
     }
@@ -47,20 +49,43 @@ public class Hangman {
         String hiddenword = new String(hiddenLetters);
         String guess = (JOptionPane.showInputDialog("Write your guess."));
 
-        if (showingword.contains(guess)) {
 
+        while (showingword.contains("_")){
 
-            for (int i = 0; i < showingword.length(); i++) {
+            if (showingword.contains(guess)) {
 
-                if (showingword.charAt(i) == guess.charAt(0)) {
+                if (guess.length() > 1){
 
-                    hiddenLetters[i] = guess.charAt(0);
+                    for (int i = 0; i < showingword.length(); i++) {
 
-                }
+                        if (showingword.charAt(i) == guess.charAt(i)) {
 
+                            hiddenLetters[i] = guess.charAt(i);
+
+                        }
+                    }
             }
+                else {
+
+
+                    for (int i = 0; i < showingword.length(); i++) {
+
+                        if (showingword.charAt(i) == guess.charAt(0)) {
+
+                            hiddenLetters[i] = guess.charAt(0);
+
+                        }
+
+                    }
+                }
+            }
+
+
+            guess = (JOptionPane.showInputDialog("Write your guess."));
         }
+
         return hiddenLetters;
+
     }
 }
 

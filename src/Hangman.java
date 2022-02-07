@@ -52,7 +52,8 @@ public class Hangman {
         String NewLife;
         String Win;
         String Lose;
-        String WordList;
+        char[] LetterList = new char[10 + showingLetters.length];
+        int a = 0;
 
         while (hiddenword.contains("_")){
 
@@ -60,7 +61,7 @@ public class Hangman {
 
                 if (guess.length() > 1) {
 
-                    for (int i = 0; i < showingword.length(); i++) {
+                    for (int  i= 0; i < showingword.length(); i++) {
 
                         if (showingword.charAt(i) == guess.charAt(i)) {
 
@@ -86,11 +87,15 @@ public class Hangman {
                     life = life - 1;
 
                 }
-                WordList = guess;
+
+                    LetterList[a] = guess.charAt(0);
+                    a++;
+
+
                 NewLife = "You have " + life +" turns left";
                 System.out.println(hiddenLetters);
                 System.out.println(NewLife);
-                System.out.println(WordList);
+                System.out.println(LetterList);
 
             Win = "Congratulations You Win!!!";
             Lose = "You Lose";

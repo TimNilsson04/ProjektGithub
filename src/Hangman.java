@@ -44,17 +44,21 @@ public class Hangman {
     }
 
 
-    public static char[] guessing(char[] hiddenLetters, char[] showingLetters) {
+    public static String guessing(char[] hiddenLetters, char[] showingLetters) {
         String showingword = new String(showingLetters);
         String hiddenword = new String(hiddenLetters);
         String guess = (JOptionPane.showInputDialog("Write your guess."));
+        int life = 11;
+        String NewLife;
+        String Win;
+        String Lose;
+        String WordList;
 
-
-        while (showingword.contains("_")){
+        while (hiddenword.contains("_")){
 
             if (showingword.contains(guess)) {
 
-                if (guess.length() > 1){
+                if (guess.length() > 1) {
 
                     for (int i = 0; i < showingword.length(); i++) {
 
@@ -64,8 +68,7 @@ public class Hangman {
 
                         }
                     }
-            }
-                else {
+                } else if (guess.length() > 0) {
 
 
                     for (int i = 0; i < showingword.length(); i++) {
@@ -79,12 +82,38 @@ public class Hangman {
                     }
                 }
             }
+                else{
+                    life = life - 1;
+
+                }
+                WordList = guess;
+                NewLife = "You have " + life +" turns left";
+                System.out.println(hiddenLetters);
+                System.out.println(NewLife);
+                System.out.println(WordList);
+
+            Win = "Congratulations You Win!!!";
+            Lose = "You Lose";
+
+            hiddenword = new String(hiddenLetters);
+
+            if(hiddenword.equals(showingword)){
+                System.out.println(Win);
+                System.exit(0);
+            }
+
+            if(life < 1){
+                System.out.println(Lose);
+                System.exit(0);
+            }
 
 
             guess = (JOptionPane.showInputDialog("Write your guess."));
+
+
         }
 
-        return hiddenLetters;
+        return hiddenword;
 
     }
 }
